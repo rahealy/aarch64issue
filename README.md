@@ -14,7 +14,7 @@ Code compiled for aarch64-unknown-none-softfloat works. Code compiled with aarch
 - Opens port localhost:1234. Debug on port localhost:1234.
 - QEMU is opened in stopped state and will need to be started using gdb `si` (step instruction) or `continue` command.
 
-** In a terminal run: **
+**In a terminal run:**
 
 ```
 >$ make objdump_none qemu_none
@@ -24,7 +24,7 @@ VNC server running on 127.0.0.1:5900
 ...
 ```
 
-** In another terminal run gdb-multiarch session: **
+**In another terminal run gdb-multiarch session:**
 
 ```
 >$ gdb-multiarch 
