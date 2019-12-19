@@ -80,7 +80,7 @@ __enable_fpu:
     fmxr    fpexc, r0
 ```
 
-When complied for the aarch64 target the `mrc` and other operands aren't recognized. In addition various ARM resources seem to indicate that this applies to AARCH32 code or AARCH32 running in an AARCH64 context.
+When complied for the aarch64 target the `mrc` and a few other opcodes aren't recognized. In addition various ARM resources seem to indicate that this applies to AARCH32 code or AARCH32 running in an AARCH64 context.
 
 
 
