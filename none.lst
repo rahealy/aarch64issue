@@ -1,0 +1,439 @@
+
+kernel8:	file format ELF64-aarch64-little
+
+
+Disassembly of section .text:
+
+0000000000080000 _boot:
+   80000: a8 00 38 d5                  	mrs	x8, MPIDR_EL1
+   80004: 1f 05 40 f2                  	tst	x8, #0x3
+   80008: 81 00 00 54                  	b.ne	#0x10 <_boot+0x18>
+   8000c: 48 42 38 d5                  	mrs	x8, CurrentEL
+   80010: 1f 21 00 71                  	cmp	w8, #0x8
+   80014: 60 00 00 54                  	b.eq	#0xc <_boot+0x20>
+   80018: 5f 20 03 d5                  	wfe
+   8001c: ff ff ff 17                  	b	#-0x4 <_boot+0x18>
+   80020: 48 42 38 d5                  	mrs	x8, CurrentEL
+   80024: 1f 21 00 71                  	cmp	w8, #0x8
+   80028: 21 02 00 54                  	b.ne	#0x44 <_boot+0x6c>
+   8002c: e8 03 1f aa                  	mov	x8, xzr
+   80030: 69 00 80 52                  	mov	w9, #0x3
+   80034: 09 e1 1c d5                  	msr	CNTHCTL_EL2, x9
+   80038: 68 e0 1c d5                  	msr	CNTVOFF_EL2, x8
+   8003c: 08 11 3c d5                  	mrs	x8, HCR_EL2
+   80040: 0b 00 00 90                  	adrp	x11, #0x0
+   80044: a9 78 80 52                  	mov	w9, #0x3c5
+   80048: 08 01 61 b2                  	orr	x8, x8, #0x80000000
+   8004c: 0a 08 a0 52                  	mov	w10, #0x400000
+   80050: 6b 81 0f 91                  	add	x11, x11, #0x3e0
+   80054: 08 11 1c d5                  	msr	HCR_EL2, x8
+   80058: 09 40 1c d5                  	msr	SPSR_EL2, x9
+   8005c: 2b 40 1c d5                  	msr	ELR_EL2, x11
+   80060: 0a 41 1c d5                  	msr	SP_EL1, x10
+   80064: e0 03 9f d6                  	eret
+   80068: 20 00 20 d4                  	brk	#0x1
+   8006c: 08 08 a0 52                  	mov	w8, #0x400000
+   80070: 1f 01 00 91                  	mov	sp, x8
+   80074: db 00 00 94                  	bl	#0x36c <rinit>
+   80078: 20 00 20 d4                  	brk	#0x1
+   8007c: 00 00 00 00                  	udf	#0x0
+
+0000000000080080 aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1:
+   80080: f6 0f 1d f8                  	str	x22, [sp, #-0x30]!
+   80084: 08 00 00 90                  	adrp	x8, #0x0
+   80088: 09 00 00 90                  	adrp	x9, #0x0
+   8008c: f5 53 01 a9                  	stp	x21, x20, [sp, #0x10]
+   80090: 14 06 82 52                  	mov	w20, #0x1030
+   80094: 14 e4 a7 72                  	movk	w20, #0x3f20, lsl #16
+   80098: 15 13 97 52                  	mov	w21, #0xb898
+   8009c: 00 99 c1 3d                  	ldr	q0, [x8, #0x660]
+   800a0: 15 e0 a7 72                  	movk	w21, #0x3f00, lsl #16
+   800a4: 21 9d c1 3d                  	ldr	q1, [x9, #0x670]
+   800a8: f3 7b 02 a9                  	stp	x19, x30, [sp, #0x20]
+   800ac: f3 03 00 aa                  	mov	x19, x0
+   800b0: 9f 02 00 b9                  	str	wzr, [x20]
+   800b4: 1f 20 00 b9                  	str	wzr, [x0, #0x20]
+   800b8: 00 04 00 ad                  	stp	q0, q1, [x0]
+   800bc: b6 02 40 b9                  	ldr	w22, [x21]
+   800c0: ee 00 00 94                  	bl	#0x3b8 <<u32 as tock_registers::registers::IntLike>::zero::hed8bada8e970c281>
+   800c4: 1f 7c 56 6b                  	cmp	w0, w22, lsr #31
+   800c8: c0 00 00 54                  	b.eq	#0x18 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0x60>
+   800cc: 1f 20 03 d5                  	nop
+   800d0: b6 02 40 b9                  	ldr	w22, [x21]
+   800d4: e9 00 00 94                  	bl	#0x3a4 <<u32 as tock_registers::registers::IntLike>::zero::hed8bada8e970c281>
+   800d8: 1f 7c 56 6b                  	cmp	w0, w22, lsr #31
+   800dc: 81 ff ff 54                  	b.ne	#-0x10 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0x4c>
+   800e0: 68 02 1d 32                  	orr	w8, w19, #0x8
+   800e4: a8 0a 00 b9                  	str	w8, [x21, #0x8]
+   800e8: 02 00 00 14                  	b	#0x8 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0x70>
+   800ec: 1f 20 03 d5                  	nop
+   800f0: a8 02 40 b9                  	ldr	w8, [x21]
+   800f4: 16 79 1e 53                  	ubfx	w22, w8, #30, #1
+   800f8: e0 00 00 94                  	bl	#0x380 <<u32 as tock_registers::registers::IntLike>::zero::hed8bada8e970c281>
+   800fc: df 02 00 6b                  	cmp	w22, w0
+   80100: 61 ff ff 54                  	b.ne	#-0x14 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0x6c>
+   80104: a8 82 5e b8                  	ldur	w8, [x21, #-0x18]
+   80108: 09 0d 00 12                  	and	w9, w8, #0xf
+   8010c: 08 6d 1c 12                  	and	w8, w8, #0xfffffff0
+   80110: 3f 21 00 71                  	cmp	w9, #0x8
+   80114: e1 fe ff 54                  	b.ne	#-0x24 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0x70>
+   80118: 1f 01 13 6b                  	cmp	w8, w19
+   8011c: a1 fe ff 54                  	b.ne	#-0x2c <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0x70>
+   80120: 68 06 40 b9                  	ldr	w8, [x19, #0x4]
+   80124: 09 00 b0 52                  	mov	w9, #-0x80000000
+   80128: 1f 01 09 6b                  	cmp	w8, w9
+   8012c: 41 04 00 54                  	b.ne	#0x88 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0x134>
+   80130: 08 13 80 52                  	mov	w8, #0x98
+   80134: 89 04 80 52                  	mov	w9, #0x24
+   80138: 08 e4 a7 72                  	movk	w8, #0x3f20, lsl #16
+   8013c: 0a c1 56 b8                  	ldur	w10, [x8, #-0x94]
+   80140: 2a 15 14 33                  	bfi	w10, w9, #12, #6
+   80144: c9 12 80 52                  	mov	w9, #0x96
+   80148: 0a c1 16 b8                  	stur	w10, [x8, #-0x94]
+   8014c: 1f c1 1f b8                  	stur	wzr, [x8, #-0x4]
+   80150: 29 05 00 71                  	subs	w9, w9, #0x1
+   80154: 1f 20 03 d5                  	nop
+   80158: c1 ff ff 54                  	b.ne	#-0x8 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0xd0>
+   8015c: 09 01 40 b9                  	ldr	w9, [x8]
+   80160: 2a 05 12 32                  	orr	w10, w9, #0xc000
+   80164: c9 12 80 52                  	mov	w9, #0x96
+   80168: 0a 01 00 b9                  	str	w10, [x8]
+   8016c: 29 05 00 71                  	subs	w9, w9, #0x1
+   80170: 1f 20 03 d5                  	nop
+   80174: c1 ff ff 54                  	b.ne	#-0x8 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1+0xec>
+   80178: 49 00 80 52                  	mov	w9, #0x2
+   8017c: 1f 01 00 b9                  	str	wzr, [x8]
+   80180: 68 01 80 52                  	mov	w8, #0xb
+   80184: 0a 0c 80 52                  	mov	w10, #0x60
+   80188: 2b 60 80 52                  	mov	w11, #0x301
+   8018c: e0 03 1f 2a                  	mov	w0, wzr
+   80190: 9f 16 00 b9                  	str	wzr, [x20, #0x14]
+   80194: 89 42 1f b8                  	stur	w9, [x20, #-0xc]
+   80198: 88 82 1f b8                  	stur	w8, [x20, #-0x8]
+   8019c: 8a c2 1f b8                  	stur	w10, [x20, #-0x4]
+   801a0: 8b 02 00 b9                  	str	w11, [x20]
+   801a4: f3 7b 42 a9                  	ldp	x19, x30, [sp, #0x20]
+   801a8: f5 53 41 a9                  	ldp	x21, x20, [sp, #0x10]
+   801ac: f6 07 43 f8                  	ldr	x22, [sp], #0x30
+   801b0: c0 03 5f d6                  	ret
+   801b4: 20 00 80 52                  	mov	w0, #0x1
+   801b8: f3 7b 42 a9                  	ldp	x19, x30, [sp, #0x20]
+   801bc: f5 53 41 a9                  	ldp	x21, x20, [sp, #0x10]
+   801c0: f6 07 43 f8                  	ldr	x22, [sp], #0x30
+   801c4: c0 03 5f d6                  	ret
+
+00000000000801c8 aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2:
+   801c8: f9 63 bc a9                  	stp	x25, x24, [sp, #-0x40]!
+   801cc: f7 5b 01 a9                  	stp	x23, x22, [sp, #0x10]
+   801d0: f5 53 02 a9                  	stp	x21, x20, [sp, #0x20]
+   801d4: f3 7b 03 a9                  	stp	x19, x30, [sp, #0x30]
+   801d8: c1 0c 00 b4                  	cbz	x1, #0x198 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x1a8>
+   801dc: 15 03 82 52                  	mov	w21, #0x1018
+   801e0: f3 03 00 aa                  	mov	x19, x0
+   801e4: 14 00 01 8b                  	add	x20, x0, x1
+   801e8: 15 e4 a7 72                  	movk	w21, #0x3f20, lsl #16
+   801ec: b6 01 80 52                  	mov	w22, #0xd
+   801f0: 57 01 80 52                  	mov	w23, #0xa
+   801f4: e8 03 13 aa                  	mov	x8, x19
+   801f8: 09 15 c0 38                  	ldrsb	w9, [x8], #0x1
+   801fc: 38 1d 00 12                  	and	w24, w9, #0xff
+   80200: 29 01 f8 36                  	tbz	w9, #0x1f, #0x24 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x5c>
+   80204: 15 00 00 14                  	b	#0x54 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x90>
+   80208: 7f 02 14 eb                  	cmp	x19, x20
+   8020c: b8 82 1e b8                  	stur	w24, [x21, #-0x18]
+   80210: 00 0b 00 54                  	b.eq	#0x160 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x1a8>
+   80214: e8 03 13 aa                  	mov	x8, x19
+   80218: 09 15 c0 38                  	ldrsb	w9, [x8], #0x1
+   8021c: 38 1d 00 12                  	and	w24, w9, #0xff
+   80220: c9 01 f8 37                  	tbnz	w9, #0x1f, #0x38 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x90>
+   80224: f3 03 08 aa                  	mov	x19, x8
+   80228: 1f 2b 00 71                  	cmp	w24, #0xa
+   8022c: a0 07 00 54                  	b.eq	#0xf4 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x158>
+   80230: 1f 43 44 71                  	cmp	w24, #0x110, lsl #12
+   80234: 61 00 00 54                  	b.ne	#0xc <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x78>
+   80238: 4e 00 00 14                  	b	#0x138 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x1a8>
+   8023c: 1f 20 03 d5                  	nop
+   80240: a8 02 40 b9                  	ldr	w8, [x21]
+   80244: 19 15 05 53                  	ubfx	w25, w8, #5, #1
+   80248: 8c 00 00 94                  	bl	#0x230 <<u32 as tock_registers::registers::IntLike>::zero::hed8bada8e970c281>
+   8024c: 3f 03 00 6b                  	cmp	w25, w0
+   80250: 61 ff ff 54                  	b.ne	#-0x14 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x74>
+   80254: ed ff ff 17                  	b	#-0x4c <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x40>
+   80258: 1f 01 14 eb                  	cmp	x8, x20
+   8025c: a0 02 00 54                  	b.eq	#0x54 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0xe8>
+   80260: 68 06 40 39                  	ldrb	w8, [x19, #0x1]
+   80264: 73 0a 00 91                  	add	x19, x19, #0x2
+   80268: 0a 15 00 12                  	and	w10, w8, #0x3f
+   8026c: 08 13 00 12                  	and	w8, w24, #0x1f
+   80270: 1f 7f 03 71                  	cmp	w24, #0xdf
+   80274: 89 02 00 54                  	b.ls	#0x50 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0xfc>
+   80278: 7f 02 14 eb                  	cmp	x19, x20
+   8027c: e0 02 00 54                  	b.eq	#0x5c <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x110>
+   80280: 69 16 40 38                  	ldrb	w9, [x19], #0x1
+   80284: 29 15 00 12                  	and	w9, w9, #0x3f
+   80288: eb 03 13 aa                  	mov	x11, x19
+   8028c: 49 15 1a 33                  	bfi	w9, w10, #6, #6
+   80290: 1f c3 03 71                  	cmp	w24, #0xf0
+   80294: c3 02 00 54                  	b.lo	#0x58 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x124>
+   80298: 7f 01 14 eb                  	cmp	x11, x20
+   8029c: 20 03 00 54                  	b.eq	#0x64 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x138>
+   802a0: 6a 15 40 38                  	ldrb	w10, [x11], #0x1
+   802a4: 4a 15 00 12                  	and	w10, w10, #0x3f
+   802a8: f3 03 0b aa                  	mov	x19, x11
+   802ac: 16 00 00 14                  	b	#0x58 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x13c>
+   802b0: ea 03 1f 2a                  	mov	w10, wzr
+   802b4: f3 03 14 aa                  	mov	x19, x20
+   802b8: 08 13 00 12                  	and	w8, w24, #0x1f
+   802bc: 1f 7f 03 71                  	cmp	w24, #0xdf
+   802c0: c8 fd ff 54                  	b.hi	#-0x48 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0xb0>
+   802c4: 0a 11 1a 33                  	bfi	w10, w8, #6, #5
+   802c8: f8 03 0a 2a                  	mov	w24, w10
+   802cc: 1f 2b 00 71                  	cmp	w24, #0xa
+   802d0: 01 fb ff 54                  	b.ne	#-0xa0 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x68>
+   802d4: 13 00 00 14                  	b	#0x4c <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x158>
+   802d8: e9 03 1f 2a                  	mov	w9, wzr
+   802dc: eb 03 14 aa                  	mov	x11, x20
+   802e0: 49 15 1a 33                  	bfi	w9, w10, #6, #6
+   802e4: 1f c3 03 71                  	cmp	w24, #0xf0
+   802e8: 82 fd ff 54                  	b.hs	#-0x50 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0xd0>
+   802ec: 09 11 14 33                  	bfi	w9, w8, #12, #5
+   802f0: f8 03 09 2a                  	mov	w24, w9
+   802f4: 1f 2b 00 71                  	cmp	w24, #0xa
+   802f8: c1 f9 ff 54                  	b.ne	#-0xc8 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x68>
+   802fc: 09 00 00 14                  	b	#0x24 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x158>
+   80300: ea 03 1f 2a                  	mov	w10, wzr
+   80304: 08 09 0e 53                  	ubfiz	w8, w8, #18, #3
+   80308: 28 2d 1a 33                  	bfi	w8, w9, #6, #12
+   8030c: 18 01 0a 2a                  	orr	w24, w8, w10
+   80310: 1f 2b 00 71                  	cmp	w24, #0xa
+   80314: e1 f8 ff 54                  	b.ne	#-0xe4 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x68>
+   80318: 02 00 00 14                  	b	#0x8 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x158>
+   8031c: 1f 20 03 d5                  	nop
+   80320: a8 02 40 b9                  	ldr	w8, [x21]
+   80324: 18 15 05 53                  	ubfx	w24, w8, #5, #1
+   80328: 54 00 00 94                  	bl	#0x150 <<u32 as tock_registers::registers::IntLike>::zero::hed8bada8e970c281>
+   8032c: 1f 03 00 6b                  	cmp	w24, w0
+   80330: 61 ff ff 54                  	b.ne	#-0x14 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x154>
+   80334: b6 82 1e b8                  	stur	w22, [x21, #-0x18]
+   80338: a8 02 40 b9                  	ldr	w8, [x21]
+   8033c: 19 15 05 53                  	ubfx	w25, w8, #5, #1
+   80340: 4e 00 00 94                  	bl	#0x138 <<u32 as tock_registers::registers::IntLike>::zero::hed8bada8e970c281>
+   80344: f8 03 17 2a                  	mov	w24, w23
+   80348: 3f 03 00 6b                  	cmp	w25, w0
+   8034c: e0 f5 ff 54                  	b.eq	#-0x144 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x40>
+   80350: 1f 20 03 d5                  	nop
+   80354: a8 02 40 b9                  	ldr	w8, [x21]
+   80358: 18 15 05 53                  	ubfx	w24, w8, #5, #1
+   8035c: 47 00 00 94                  	bl	#0x11c <<u32 as tock_registers::registers::IntLike>::zero::hed8bada8e970c281>
+   80360: 1f 03 00 6b                  	cmp	w24, w0
+   80364: 61 ff ff 54                  	b.ne	#-0x14 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x188>
+   80368: f8 03 17 2a                  	mov	w24, w23
+   8036c: a7 ff ff 17                  	b	#-0x164 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2+0x40>
+   80370: f3 7b 43 a9                  	ldp	x19, x30, [sp, #0x30]
+   80374: f5 53 42 a9                  	ldp	x21, x20, [sp, #0x20]
+   80378: f7 5b 41 a9                  	ldp	x23, x22, [sp, #0x10]
+   8037c: f9 63 c4 a8                  	ldp	x25, x24, [sp], #0x40
+   80380: c0 03 5f d6                  	ret
+   80384: 00 00 00 00                  	udf	#0x0
+
+0000000000080388 unsafe_main:
+   80388: ff 83 02 d1                  	sub	sp, sp, #0xa0
+   8038c: 02 12 80 52                  	mov	w2, #0x90
+   80390: e0 03 00 91                  	mov	x0, sp
+   80394: e1 03 1f 2a                  	mov	w1, wzr
+   80398: fe 4b 00 f9                  	str	x30, [sp, #0x90]
+   8039c: 55 00 00 94                  	bl	#0x154 <memset>
+   803a0: e0 03 00 91                  	mov	x0, sp
+   803a4: 37 ff ff 97                  	bl	#-0x324 <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1>
+   803a8: 00 01 00 34                  	cbz	w0, #0x20 <unsafe_main+0x40>
+   803ac: 00 00 00 90                  	adrp	x0, #0x0
+   803b0: 02 00 00 b0                  	adrp	x2, #0x1000
+   803b4: 00 00 1a 91                  	add	x0, x0, #0x680
+   803b8: 42 00 00 91                  	add	x2, x2, #0x0
+   803bc: c1 01 80 52                  	mov	w1, #0xe
+   803c0: 32 00 00 94                  	bl	#0xc8 <core::panicking::panic::h1d4111f6254ee0f7>
+   803c4: 20 00 20 d4                  	brk	#0x1
+   803c8: 00 00 00 90                  	adrp	x0, #0x0
+   803cc: 21 02 80 52                  	mov	w1, #0x11
+   803d0: 00 64 1a 91                  	add	x0, x0, #0x699
+   803d4: 7d ff ff 97                  	bl	#-0x20c <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2>
+   803d8: 12 00 00 94                  	bl	#0x48 <main>
+   803dc: 20 00 20 d4                  	brk	#0x1
+
+00000000000803e0 rinit:
+   803e0: 08 00 00 90                  	adrp	x8, #0x0
+   803e4: 09 00 00 90                  	adrp	x9, #0x0
+   803e8: 08 5d 43 f9                  	ldr	x8, [x8, #0x6b8]
+   803ec: 29 61 43 f9                  	ldr	x9, [x9, #0x6c0]
+   803f0: 3f 01 08 eb                  	cmp	x9, x8
+   803f4: c2 00 00 54                  	b.hs	#0x18 <rinit+0x2c>
+   803f8: 09 00 00 90                  	adrp	x9, #0x0
+   803fc: 29 61 43 f9                  	ldr	x9, [x9, #0x6c0]
+   80400: 3f 85 00 f8                  	str	xzr, [x9], #0x8
+   80404: 3f 01 08 eb                  	cmp	x9, x8
+   80408: c3 ff ff 54                  	b.lo	#-0x8 <rinit+0x20>
+   8040c: df ff ff 97                  	bl	#-0x84 <unsafe_main>
+   80410: 20 00 20 d4                  	brk	#0x1
+   80414: 00 00 00 00                  	udf	#0x0
+
+0000000000080418 rust_begin_unwind:
+   80418: 5f 20 03 d5                  	wfe
+   8041c: ff ff ff 17                  	b	#-0x4 <rust_begin_unwind>
+
+0000000000080420 main:
+   80420: ff 83 02 d1                  	sub	sp, sp, #0xa0
+   80424: 02 12 80 52                  	mov	w2, #0x90
+   80428: e0 03 00 91                  	mov	x0, sp
+   8042c: e1 03 1f 2a                  	mov	w1, wzr
+   80430: fe 4b 00 f9                  	str	x30, [sp, #0x90]
+   80434: 2f 00 00 94                  	bl	#0xbc <memset>
+   80438: e0 03 00 91                  	mov	x0, sp
+   8043c: 11 ff ff 97                  	bl	#-0x3bc <aarch64issue::uart::Uart::init::h6c4d71463ce6d4a1>
+   80440: e0 00 00 35                  	cbnz	w0, #0x1c <main+0x3c>
+   80444: 00 00 00 90                  	adrp	x0, #0x0
+   80448: c1 01 80 52                  	mov	w1, #0xe
+   8044c: 00 a8 1a 91                  	add	x0, x0, #0x6aa
+   80450: 5e ff ff 97                  	bl	#-0x288 <aarch64issue::uart::Uart::puts::ha1ee2ef90b54c6a2>
+   80454: 5f 20 03 d5                  	wfe
+   80458: ff ff ff 17                  	b	#-0x4 <main+0x34>
+   8045c: 00 00 00 90                  	adrp	x0, #0x0
+   80460: 02 00 00 b0                  	adrp	x2, #0x1000
+   80464: 00 00 1a 91                  	add	x0, x0, #0x680
+   80468: 42 60 00 91                  	add	x2, x2, #0x18
+   8046c: c1 01 80 52                  	mov	w1, #0xe
+   80470: 06 00 00 94                  	bl	#0x18 <core::panicking::panic::h1d4111f6254ee0f7>
+   80474: 20 00 20 d4                  	brk	#0x1
+
+0000000000080478 <u32 as tock_registers::registers::IntLike>::zero::hed8bada8e970c281:
+   80478: e0 03 1f 2a                  	mov	w0, wzr
+   8047c: c0 03 5f d6                  	ret
+
+0000000000080480 core::ptr::real_drop_in_place::h3bd1349bfff8efb6:
+   80480: c0 03 5f d6                  	ret
+   80484: 00 00 00 00                  	udf	#0x0
+
+0000000000080488 core::panicking::panic::h1d4111f6254ee0f7:
+   80488: ff 03 01 d1                  	sub	sp, sp, #0x40
+   8048c: 28 00 80 52                  	mov	w8, #0x1
+   80490: e9 c3 00 91                  	add	x9, sp, #0x30
+   80494: e0 07 03 a9                  	stp	x0, x1, [sp, #0x30]
+   80498: e0 03 00 91                  	mov	x0, sp
+   8049c: e1 03 02 aa                  	mov	x1, x2
+   804a0: ff 7f 01 a9                  	stp	xzr, xzr, [sp, #0x10]
+   804a4: e9 23 00 a9                  	stp	x9, x8, [sp]
+   804a8: 08 01 80 52                  	mov	w8, #0x8
+   804ac: e8 7f 02 a9                  	stp	x8, xzr, [sp, #0x20]
+   804b0: 02 00 00 94                  	bl	#0x8 <core::panicking::panic_fmt::ha5511e0aa87ea2d5>
+   804b4: 20 00 20 d4                  	brk	#0x1
+
+00000000000804b8 core::panicking::panic_fmt::ha5511e0aa87ea2d5:
+   804b8: 09 00 00 b0                  	adrp	x9, #0x1000
+   804bc: 28 00 80 52                  	mov	w8, #0x1
+   804c0: 29 c1 00 91                  	add	x9, x9, #0x30
+   804c4: e8 27 be a9                  	stp	x8, x9, [sp, #-0x20]!
+   804c8: e0 07 01 a9                  	stp	x0, x1, [sp, #0x10]
+   804cc: e0 03 00 91                  	mov	x0, sp
+   804d0: d2 ff ff 97                  	bl	#-0xb8 <rust_begin_unwind>
+   804d4: 20 00 20 d4                  	brk	#0x1
+
+00000000000804d8 <T as core::any::Any>::type_id::hf2e117067e8aafdf:
+   804d8: 60 e6 9f d2                  	mov	x0, #0xff33
+   804dc: a0 79 b8 f2                  	movk	x0, #0xc3cd, lsl #16
+   804e0: e0 0c cc f2                  	movk	x0, #0x6067, lsl #32
+   804e4: e0 11 ed f2                  	movk	x0, #0x688f, lsl #48
+   804e8: c0 03 5f d6                  	ret
+   804ec: 00 00 00 00                  	udf	#0x0
+
+00000000000804f0 memset:
+   804f0: ff 83 00 d1                  	sub	sp, sp, #0x20
+   804f4: 22 0b 00 b4                  	cbz	x2, #0x164 <memset+0x168>
+   804f8: 5f 7c 00 f1                  	cmp	x2, #0x1f
+   804fc: 68 00 00 54                  	b.hi	#0xc <memset+0x18>
+   80500: e8 03 1f aa                  	mov	x8, xzr
+   80504: 50 00 00 14                  	b	#0x140 <memset+0x154>
+   80508: 20 0c 01 4e                  	dup	v0.16b, w1
+   8050c: 48 e8 7b 92                  	and	x8, x2, #0xffffffffffffffe0
+   80510: 0a 40 00 91                  	add	x10, x0, #0x10
+   80514: e9 03 08 aa                  	mov	x9, x8
+   80518: e0 07 80 3d                  	str	q0, [sp, #0x10]
+   8051c: ec 03 0a aa                  	mov	x12, x10
+   80520: eb 0b 40 f9                  	ldr	x11, [sp, #0x10]
+   80524: 29 81 00 f1                  	subs	x9, x9, #0x20
+   80528: 8b 0d 1f 38                  	strb	w11, [x12, #-0x10]!
+   8052c: ed 0f 40 f9                  	ldr	x13, [sp, #0x18]
+   80530: 6e fd 58 d3                  	lsr	x14, x11, #24
+   80534: 6f fd 50 d3                  	lsr	x15, x11, #16
+   80538: f0 03 0c aa                  	mov	x16, x12
+   8053c: 8e 0d 00 39                  	strb	w14, [x12, #0x3]
+   80540: 8f 09 00 39                  	strb	w15, [x12, #0x2]
+   80544: 6f fd 60 d3                  	lsr	x15, x11, #32
+   80548: ae fd 68 d3                  	lsr	x14, x13, #40
+   8054c: 0d 8e 00 38                  	strb	w13, [x16, #0x8]!
+   80550: 8e 35 00 39                  	strb	w14, [x12, #0xd]
+   80554: ae fd 48 d3                  	lsr	x14, x13, #8
+   80558: 8e 25 00 39                  	strb	w14, [x12, #0x9]
+   8055c: ae fd 58 d3                  	lsr	x14, x13, #24
+   80560: 8f 4d 00 38                  	strb	w15, [x12, #0x4]!
+   80564: af fd 50 d3                  	lsr	x15, x13, #16
+   80568: 0e 0e 00 39                  	strb	w14, [x16, #0x3]
+   8056c: ae fd 60 d3                  	lsr	x14, x13, #32
+   80570: 0f 0a 00 39                  	strb	w15, [x16, #0x2]
+   80574: 6f fd 68 d3                  	lsr	x15, x11, #40
+   80578: 0e 4e 00 38                  	strb	w14, [x16, #0x4]!
+   8057c: 6e fd 48 d3                  	lsr	x14, x11, #8
+   80580: 4f 51 1f 38                  	sturb	w15, [x10, #-0xb]
+   80584: 6f fd 78 d3                  	lsr	x15, x11, #56
+   80588: 6b fd 70 d3                  	lsr	x11, x11, #48
+   8058c: 4e 11 1f 38                  	sturb	w14, [x10, #-0xf]
+   80590: ae fd 78 d3                  	lsr	x14, x13, #56
+   80594: 8b 09 00 39                  	strb	w11, [x12, #0x2]
+   80598: ab fd 70 d3                  	lsr	x11, x13, #48
+   8059c: 8f 0d 00 39                  	strb	w15, [x12, #0x3]
+   805a0: ed 03 0a aa                  	mov	x13, x10
+   805a4: 0e 0e 00 39                  	strb	w14, [x16, #0x3]
+   805a8: 0b 0a 00 39                  	strb	w11, [x16, #0x2]
+   805ac: e0 03 80 3d                  	str	q0, [sp]
+   805b0: eb 03 40 f9                  	ldr	x11, [sp]
+   805b4: 4b 01 00 39                  	strb	w11, [x10]
+   805b8: ec 07 40 f9                  	ldr	x12, [sp, #0x8]
+   805bc: 8e fd 58 d3                  	lsr	x14, x12, #24
+   805c0: 8f fd 50 d3                  	lsr	x15, x12, #16
+   805c4: ac 8d 00 38                  	strb	w12, [x13, #0x8]!
+   805c8: ae 0d 00 39                  	strb	w14, [x13, #0x3]
+   805cc: 8e fd 60 d3                  	lsr	x14, x12, #32
+   805d0: af 09 00 39                  	strb	w15, [x13, #0x2]
+   805d4: 8f fd 68 d3                  	lsr	x15, x12, #40
+   805d8: ae 4d 00 38                  	strb	w14, [x13, #0x4]!
+   805dc: 8e fd 48 d3                  	lsr	x14, x12, #8
+   805e0: 4f 35 00 39                  	strb	w15, [x10, #0xd]
+   805e4: 6f fd 68 d3                  	lsr	x15, x11, #40
+   805e8: 4e 25 00 39                  	strb	w14, [x10, #0x9]
+   805ec: 6e fd 58 d3                  	lsr	x14, x11, #24
+   805f0: 4f 15 00 39                  	strb	w15, [x10, #0x5]
+   805f4: 6f fd 50 d3                  	lsr	x15, x11, #16
+   805f8: 4e 0d 00 39                  	strb	w14, [x10, #0x3]
+   805fc: 6e fd 48 d3                  	lsr	x14, x11, #8
+   80600: 4f 09 00 39                  	strb	w15, [x10, #0x2]
+   80604: 6f fd 60 d3                  	lsr	x15, x11, #32
+   80608: 4e 05 00 39                  	strb	w14, [x10, #0x1]
+   8060c: 4e 81 00 91                  	add	x14, x10, #0x20
+   80610: 4f 4d 00 38                  	strb	w15, [x10, #0x4]!
+   80614: 6f fd 78 d3                  	lsr	x15, x11, #56
+   80618: 6b fd 70 d3                  	lsr	x11, x11, #48
+   8061c: 4f 0d 00 39                  	strb	w15, [x10, #0x3]
+   80620: 8f fd 78 d3                  	lsr	x15, x12, #56
+   80624: 4b 09 00 39                  	strb	w11, [x10, #0x2]
+   80628: ea 03 0e aa                  	mov	x10, x14
+   8062c: 8c fd 70 d3                  	lsr	x12, x12, #48
+   80630: af 0d 00 39                  	strb	w15, [x13, #0x3]
+   80634: ac 09 00 39                  	strb	w12, [x13, #0x2]
+   80638: 01 f7 ff 54                  	b.ne	#-0x120 <memset+0x28>
+   8063c: 1f 01 02 eb                  	cmp	x8, x2
+   80640: c0 00 00 54                  	b.eq	#0x18 <memset+0x168>
+   80644: 49 00 08 cb                  	sub	x9, x2, x8
+   80648: 08 00 08 8b                  	add	x8, x0, x8
+   8064c: 29 05 00 f1                  	subs	x9, x9, #0x1
+   80650: 01 15 00 38                  	strb	w1, [x8], #0x1
+   80654: c1 ff ff 54                  	b.ne	#-0x8 <memset+0x15c>
+   80658: ff 83 00 91                  	add	sp, sp, #0x20
+   8065c: c0 03 5f d6                  	ret

@@ -1,0 +1,6 @@
+**/target
+**/*.rs.bk
+**/*.img
+**/kernel*
+**/Cargo.lock
+**/fpu.S
